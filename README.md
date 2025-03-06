@@ -103,4 +103,10 @@ Comprueba que la aplicación está funcionando correctamente:
 pm2 status
 ```
 
+Guardar configuracion si todo esta corriendo, ejecutar:
+
+```sh
+pm2 save
+```
+
 También puedes verificar la conexión accediendo a `test.php` desde tu navegador.
