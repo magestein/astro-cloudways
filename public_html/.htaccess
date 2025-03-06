@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Permitir acceso directo a archivos PHP existentes
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+    
+    # Permitir acceso directo a directorios existentes
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+    
+    # Redirigir todas las demás solicitudes a index.php
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Proteger archivos sensibles usando sintaxis compatible
+<Files ~ "^(package\.json|package-lock\.json|ecosystem\.config\.cjs|ecosystem\.config\.js|\.env|\.git|\.gitignore|\.npmrc)$">
+    Require all denied
+</Files>

@@ -1,0 +1,49 @@
+---
+import "../../styles/globals.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    {
+      import.meta.env.UMAMI_WEBSITE_ID &&
+        import.meta.env.UMAMI_WEBSITE_HOST && (
+          <script
+            defer
+            src={import.meta.env.UMAMI_WEBSITE_HOST}
+            data-website-id={import.meta.env.UMAMI_WEBSITE_ID}
+          />
+        )
+    }
+
+    <script is:inline>
+      import { LIGHT_THEME } from "tailwind.config.mjs";
+
+      if (localStorage.getItem("theme") === null) {
+        document.documentElement.setAttribute("data-theme", LIGHT_THEME);
+      } else
+        document.documentElement.setAttribute(
+          "data-theme",
+          localStorage.getItem("theme")
+        );
+    </script>
+
+
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+
+  <body class="bg-[#1a1b23] min-h-screen">
+    <slot />
+  </body>
+</html>

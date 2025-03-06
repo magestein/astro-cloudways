@@ -1,0 +1,32 @@
+---
+// Esta función se ejecuta en el servidor para cada solicitud
+export const prerender = false; // Fuerza SSR para esta página
+
+// Obtener la hora actual del servidor
+const serverTime = new Date().toLocaleTimeString();
+
+// Obtener la IP del cliente (solo funciona con SSR)
+const clientIP = Astro.clientAddress || 'No disponible';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Prueba de SSR en Astro</title>
+  </head>
+  <body>
+    <h1>Prueba de Server-Side Rendering</h1>
+    
+    <p>Esta página está renderizada en el servidor.</p>
+    
+    <ul>
+      <li><strong>Hora del servidor:</strong> {serverTime}</li>
+      <li><strong>Tu dirección IP:</strong> {clientIP}</li>
+    </ul>
+    
+    <p>Si puedes ver la hora del servidor y tu dirección IP, significa que SSR está funcionando correctamente.</p>
+    
+    <p><a href="/">Volver a la página principal</a></p>
+  </body>
+</html> 
